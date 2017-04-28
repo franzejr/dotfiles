@@ -1,0 +1,15 @@
+session:
+  name: "chromechat"
+  windows:
+    - name: "server"
+      root: "~/erlang/chromechat"
+      panes:
+        - cmd: "./bin/chromechat/start"
+    - name: "vim"
+      root: "~/erlang/chromechat"
+      panes:
+        - cmd: "vim ."
+    - name: "tests"
+      root: "~/erlang/chromechat"
+      panes:
+        - cmd: "make test"
