@@ -102,7 +102,7 @@ let g:polyglot_disabled = ['elm']
 " HTML / JS / CSS
 Plug 'sbdchd/neoformat'
 Plug 'othree/html5.vim'
-Plug 'html-improved-indentation'
+Plug 'vim-scripts/html-improved-indentation'
 Plug 'pangloss/vim-javascript'
 " For func argument completion
 Plug 'Shougo/neosnippet'
