@@ -37,11 +37,12 @@ set backupcopy=yes
 
 """ Leader #leader
 " Use space for leader
-let g:mapleader=' '
+let g:mapleader='\\'
 " Double backslash for local leader
 let g:maplocalleader='\\'
 
 """ omni #omni
+
 " enable omni syntax completion
 set omnifunc=syntaxcomplete#Complete
 
@@ -85,18 +86,24 @@ set undofile
 
 """""""""""""" Plugins #plugins
 call plug#begin()
-
+"" Dash
+Plug 'rizzatti/dash.vim'
+""Vim Wiki
+Plug 'vim-scripts/vimwiki'
+let wiki = {}
+let g:vimwikidir = $HOME . "/Dropbox/vimwiki"
+let wiki.path = g:vimwikidir
+let g:vimwiki_list=[wiki]
 """ Filetypes #filetypes
 " Polyglot loads language support on demand!
 Plug 'sheerun/vim-polyglot'
-  let g:polyglot_disabled = ['elm']
+let g:polyglot_disabled = ['elm']
 
 " HTML / JS / CSS
+Plug 'sbdchd/neoformat'
 Plug 'othree/html5.vim'
 Plug 'html-improved-indentation'
 Plug 'pangloss/vim-javascript'
-Plug 'flowtype/vim-flow'
-Plug 'wokalski/autocomplete-flow'
 " For func argument completion
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -106,7 +113,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 """ Add support for ANSI colors - this has variously been necessary and caused
 """ problems, no clue what's up there...
-  Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'powerman/vim-plugin-AnsiEsc'
 
 " Phoenix
 Plug 'c-brenn/phoenix.vim'
@@ -114,13 +121,13 @@ Plug 'tpope/vim-projectionist' " required for some navigation features
 
 " Elm
 Plug 'ElmCast/elm-vim'
-  let g:elm_format_autosave = 1
-  let g:elm_detailed_complete = 1
-  let g:elm_syntastic_show_warnings = 1
-  let g:elm_format_fail_silently = 1
-  let g:elm_browser_command = 'open'
-  let g:elm_make_show_warnings = 1
-  let g:elm_setup_keybindings = 1
+let g:elm_format_autosave = 1
+let g:elm_detailed_complete = 1
+let g:elm_syntastic_show_warnings = 1
+let g:elm_format_fail_silently = 1
+let g:elm_browser_command = 'open'
+let g:elm_make_show_warnings = 1
+let g:elm_setup_keybindings = 1
 
 " Fuse
 Plug 'BeeWarloc/vim-fuse'
@@ -131,7 +138,7 @@ function! NpmInstallAndUpdateRemotePlugins(info)
   UpdateRemotePlugins
 endfunction
 Plug 'neovim/node-host', { 'do': function('NpmInstallAndUpdateRemotePlugins') }
-Plug 'vimlab/mdown.vim', { 'do': function('NpmInstallAndUpdateRemotePlugins') }
+""Plug 'vimlab/mdown.vim', { 'do': function('NpmInstallAndUpdateRemotePlugins') }
 
 """ Utilities #utilities
 Plug 'bogado/file-line'
@@ -139,26 +146,26 @@ Plug 'bogado/file-line'
 " Easily toggle quickfix and locations lists with <leader>l and <leader>q
 Plug 'milkypostman/vim-togglelist'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources = {}
-  let g:deoplete#sources._ = ['file', 'neosnippet']
-  let g:deoplete#omni#functions = {}
-  let g:deoplete#omni#input_patterns = {}
-
-  " Elm support
-  " h/t https://github.com/ElmCast/elm-vim/issues/52#issuecomment-264161975
-  let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
-  let g:deoplete#omni#functions.elm = ['elm#Complete']
-  let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-  let g:deoplete#disable_auto_complete = 1
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#sources = {}
+" let g:deoplete#sources._ = ['file', 'neosnippet']
+" let g:deoplete#omni#functions = {}
+" let g:deoplete#omni#input_patterns = {}
+"
+" Elm support
+" h/t https://github.com/ElmCast/elm-vim/issues/52#issuecomment-264161975
+" let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
+" let g:deoplete#omni#functions.elm = ['elm#Complete']
+" let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
+" let g:deoplete#disable_auto_complete = 1
 
 Plug 'ervandew/supertab'
 
 " Add comment textobjects (I really want to reformat comments without affecting
 " the next line of code)
 Plug 'kana/vim-textobj-user' | Plug 'glts/vim-textobj-comment'
-  " Example: Reformat a comment with `gqac` (ac is "a comment")
+" Example: Reformat a comment with `gqac` (ac is "a comment")
 
 " EditorConfig support
 Plug 'editorconfig/editorconfig-vim'
@@ -168,27 +175,36 @@ Plug 'tpope/vim-unimpaired'
 
 " Line commenting
 Plug 'tomtom/tcomment_vim'
-  " By default, `gc` will toggle comments
+" By default, `gc` will toggle comments
 
 Plug 'janko-m/vim-test'                " Run tests with varying granularity
-  nmap <silent> <leader>t :TestNearest<CR>
-  nmap <silent> <leader>T :TestFile<CR>
-  nmap <silent> <leader>a :TestSuite<CR>
-  nmap <silent> <leader>l :TestLast<CR>
-  nmap <silent> <leader>g :TestVisit<CR>
-  " run tests in neoterm
-  let g:test#strategy = 'neoterm'
-  " I use spinach, not cucumber!
-  let g:test#ruby#cucumber#executable = 'spinach'
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+" run tests in neoterm
+let g:test#strategy = 'neoterm'
+" I use spinach, not cucumber!
+let g:test#ruby#cucumber#executable = 'spinach'
+
+""Plug 'neomake/neomake'
+" When writing a buffer (no delay).
+""call neomake#configure#automake('w')
+
 
 " Asynchronous file linter
 Plug 'w0rp/ale'
-  " wait a bit before checking syntax in a file, if typing
-  let g:ale_lint_delay = 5000
-  " Use global eslint
-  let g:ale_javascript_eslint_use_global = 1
-  " Only use es6 for js
-  let g:ale_linters = {'javascript': ['eslint']}
+" wait a bit before checking syntax in a file, if typing
+let g:ale_lint_delay = 100
+let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['standard']}
+let g:ale_fix_on_save = 1
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
+""autocmd bufwritepost *.js silent !standard --fix %
+""set autoread
 
 " git support from dat tpope
 Plug 'tpope/vim-fugitive'
@@ -201,22 +217,22 @@ Plug 'mattn/webapi-vim'
 
 " create gists trivially from buffer, selection, etc.
 Plug 'mattn/gist-vim'
-  let g:gist_open_browser_after_post = 1
-  let g:gist_detect_filetype = 2
-  let g:gist_post_private = 1
-  if has('macunix')
-    let g:gist_clip_command = 'pbcopy'
-  endif
+let g:gist_open_browser_after_post = 1
+let g:gist_detect_filetype = 2
+let g:gist_post_private = 1
+if has('macunix')
+  let g:gist_clip_command = 'pbcopy'
+endif
 
 " visualize your undo tree
 Plug 'sjl/gundo.vim'
-  nnoremap <F5> :GundoToggle<CR>
+nnoremap <F5> :GundoToggle<CR>
 
 " org-mode
 Plug 'jceb/vim-orgmode'
-  let g:org_agenda_files = ['~/org/index.org']
-  let g:org_export_emacs = '/usr/local/bin/emacs'
-  let g:org_export_verbose = 1
+let g:org_agenda_files = ['~/org/index.org']
+let g:org_export_emacs = '/usr/local/bin/emacs'
+let g:org_export_verbose = 1
 
 " universal text linking
 Plug 'vim-scripts/utl.vim'
@@ -229,8 +245,8 @@ Plug 'tpope/vim-speeddating'
 
 " calendar application
 Plug 'itchyny/calendar.vim'
-  let g:calendar_google_calendar = 1
-  let g:calendar_google_task = 1
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
 
 " nicer api for neovim terminal
 Plug 'kassio/neoterm'
@@ -247,43 +263,59 @@ Plug 'lifepillar/vim-solarized8'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-  "let g:airline_theme = 'luna'
-  "let g:airline_theme = 'lucius'
-  let g:airline_theme = 'solarized'
-  let g:bufferline_echo = 0
-  let g:airline_powerline_fonts=0
-  let g:airline_enable_branch=1
-  let g:airline_enable_syntastic=1
-  let g:airline_branch_prefix = '⎇ '
-  let g:airline_paste_symbol = '∥'
-  let g:airline#extensions#tabline#enabled = 0
+"let g:airline_theme = 'luna'
+"let g:airline_theme = 'lucius'
+let g:airline_theme = 'solarized'
+let g:bufferline_echo = 0
+let g:airline_powerline_fonts=0
+let g:airline_enable_branch=1
+let g:airline_enable_syntastic=1
+let g:airline_branch_prefix = '⎇ '
+let g:airline_paste_symbol = '∥'
+let g:airline#extensions#tabline#enabled = 0
 
 """ Code Navigation #code-navigation
 " fzf fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-  let g:fzf_layout = { 'window': 'enew' }
-  nnoremap <silent> <C-P> :FZF<cr>
-  nnoremap <silent> <leader>a :Ag<cr>
-  augroup localfzf
-    autocmd!
-    autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
-    autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
-    autocmd VimEnter * command! -bang -nargs=* Ag
-      \ call fzf#vim#ag(<q-args>,
-      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-      \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \                 <bang>0)
-  augroup END
+let g:fzf_layout = { 'window': 'enew' }
+nnoremap <silent> <C-P> :FZF<cr>
+nnoremap <silent> <leader>a :Ag<cr>
+augroup localfzf
+  autocmd!
+  autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
+  autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
+  autocmd VimEnter * command! -bang -nargs=* Ag
+        \ call fzf#vim#ag(<q-args>,
+        \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+        \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+        \                 <bang>0)
+augroup END
+
+
+" let g:neoformat_javascript_standard = {
+"           \ 'exe': '/usr/local/bin/standard',
+"           \ 'args': ['--fix'],
+"           \ 'stdin': 1,
+"           \ }
+
+
+"" ONLY PRETTIER
+"" autoformato JS files with Prettier
+""autocmd BufWritePre *.js Neoformat standard
+""autocmd BufWritePre *.js Tradeship
+
+
 
 " Open files where you last left them
 Plug 'dietsche/vim-lastplace'
 
 " Execute code checks, find mistakes, in the background
-" Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 "   " Run Neomake when I save any buffer
+"  autocmd BufWritePre *.js Neomake
 "   augroup localneomake
-"     autocmd! BufWritePost * Neomake
+"    autocmd! BufWritePost * Neomake
 "   augroup END
 "   " Don't tell me to use smartquotes in markdown ok?
 "   let g:neomake_markdown_enabled_makers = []
@@ -314,12 +346,41 @@ Plug 'dietsche/vim-lastplace'
 "         \ 'postprocess': function('NeomakeCredoErrorType')
 "         \ }
 
-" Easily manage tags files
-Plug 'ludovicchabant/vim-gutentags'
-  let g:gutentags_cache_dir = '~/.tags_cache'
+" autocmd bufwritepost *.js silent !prettier-standard % set autoread
+" autocmd FileType javascript set formatprg=prettier-standard
+""autocmd BufWritePre *.js silent :normal gggqG\<C-o>\<C-o>"
+""autocmd BufWritePre *.js :normal gggqG
+""autocmd bufwritepost *.js silent !standard --fix % set autoread
 
+""let g:neomake_javascript_enabled_makers = ['standard']
+""let g:neomake_javascript_jsx_enabled_makers = ['standard']
+
+
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+"
+
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+
+let g:ale_fixers = {'javascript': ['prettier-standard']}
+let g:ale_linters = {'javascript': ['standard']}
+let g:ale_fix_on_save = 1
+
+" Easily manage tags files
+" Plug 'ludovicchabant/vim-gutentags'
+" let g:gutentags_cache_dir = '~/.tags_cache'
+
+" Remove unused imports
+Plug 'karthikv/tradeship-vim'
 " navigate up a directory with '-' in netrw, among other things
 Plug 'tpope/vim-vinegar'
+
+Plug 'mhinz/vim-mix-format'
+
+let g:mix_format_on_save = 1
 
 " vifm file manager as the default vim file management tool
 " Plug 'vifm/neovim-vifm'
@@ -350,8 +411,8 @@ syntax enable
 "let ayucolor="mirage" " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
 " colorscheme ayu
-colorscheme solarized8_light_flat
-"colorscheme solarized8_dark_flat
+" colorscheme solarized8_light_flat
+colorscheme solarized8_dark_flat
 
 """ Keyboard
 " Remove highlights
@@ -501,11 +562,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <silent> <BS> <C-w>h
-  " Have to add this because hyperterm sends backspace for C-h
+" Have to add this because hyperterm sends backspace for C-h
 
 " Navigate tabs with leader+h,l
 " It's hard to hit space and h/l simultaneously so increase the timeout for
 " space
-nnoremap <leader>h :tabprev<cr>
-nnoremap <leader>l :tabnext<cr>
+nnoremap <tab> :tabprev<cr>
+"" nnoremap <tab> :tabnext<cr>
 """ End Navigation ==================

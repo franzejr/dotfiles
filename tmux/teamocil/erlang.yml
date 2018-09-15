@@ -1,7 +1,0 @@
-session:
-  name: "erlang"
-  windows:
-    - name: "vim"
-      root: "~/erlang/erlang_school/chapter_3"
-      panes:
-        - cmd: "vim ."
