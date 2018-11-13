@@ -146,19 +146,20 @@ Plug 'bogado/file-line'
 " Easily toggle quickfix and locations lists with <leader>l and <leader>q
 Plug 'milkypostman/vim-togglelist'
 
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources = {}
-" let g:deoplete#sources._ = ['file', 'neosnippet']
-" let g:deoplete#omni#functions = {}
-" let g:deoplete#omni#input_patterns = {}
-"
-" Elm support
-" h/t https://github.com/ElmCast/elm-vim/issues/52#issuecomment-264161975
-" let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
-" let g:deoplete#omni#functions.elm = ['elm#Complete']
-" let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-" let g:deoplete#disable_auto_complete = 1
+
+" Autocomplete {{{3
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+
+" TypeScript {{{4
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript',       { 'do': ':UpdateRemotePlugins' }
+
+
 
 Plug 'ervandew/supertab'
 
@@ -380,6 +381,12 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'mhinz/vim-mix-format'
 
+Plug 'sheerun/vim-polyglot'
+
+Plug 'trevordmiller/nova-vim'
+
+Plug 'junegunn/goyo.vim'
+
 let g:mix_format_on_save = 1
 
 " vifm file manager as the default vim file management tool
@@ -412,7 +419,9 @@ syntax enable
 " let ayucolor="dark"   " for dark version of theme
 " colorscheme ayu
 " colorscheme solarized8_light_flat
-colorscheme solarized8_dark_flat
+" colorscheme solarized8_dark_flat
+set background=dark
+colorscheme nova-with-italics
 
 """ Keyboard
 " Remove highlights
@@ -570,3 +579,12 @@ nnoremap <silent> <BS> <C-w>h
 nnoremap <tab> :tabprev<cr>
 "" nnoremap <tab> :tabnext<cr>
 """ End Navigation ==================
+
+
+" Load additional HTML syntax files
+runtime! syntax/html/*.vim
+
+" Add `local-class` to work with `ember-css-modules`
+syn match htmlArg contained "\<local-class\>"
+
+
