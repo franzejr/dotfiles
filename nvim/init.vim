@@ -129,6 +129,19 @@ let g:elm_browser_command = 'open'
 let g:elm_make_show_warnings = 1
 let g:elm_setup_keybindings = 1
 
+" Dart
+Plug 'dart-lang/dart-vim-plugin'
+let dart_format_on_save = 1
+
+Plug 'roxma/nvim-completion-manager'
+Plug 'dart-lang/dart-vim-plugin', { 'for': [ 'dart' ] }
+
+let g:LanguageClient_serverCommands = {
+    \ 'dart'           : ['dart_language_server'],
+    \ }
+
+let g:LanguageClient_loggingLevel = 'DEBUG'
+
 " Fuse
 Plug 'BeeWarloc/vim-fuse'
 
