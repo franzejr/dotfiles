@@ -111,6 +111,7 @@ Plug 'Shougo/neosnippet-snippets'
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
+Plug 'mattreduce/vim-mix'
 """ Add support for ANSI colors - this has variously been necessary and caused
 """ problems, no clue what's up there...
 Plug 'powerman/vim-plugin-AnsiEsc'
@@ -133,7 +134,6 @@ let g:elm_setup_keybindings = 1
 Plug 'dart-lang/dart-vim-plugin'
 let dart_format_on_save = 1
 
-Plug 'roxma/nvim-completion-manager'
 Plug 'dart-lang/dart-vim-plugin', { 'for': [ 'dart' ] }
 
 let g:LanguageClient_serverCommands = {
@@ -158,6 +158,22 @@ Plug 'bogado/file-line'
 
 " Easily toggle quickfix and locations lists with <leader>l and <leader>q
 Plug 'milkypostman/vim-togglelist'
+
+"" Completion Framework
+" assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 
 
 " Autocomplete {{{3
