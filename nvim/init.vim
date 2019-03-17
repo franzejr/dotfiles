@@ -114,7 +114,7 @@ Plug 'slashmili/alchemist.vim'
 Plug 'mattreduce/vim-mix'
 """ Add support for ANSI colors - this has variously been necessary and caused
 """ problems, no clue what's up there...
-Plug 'powerman/vim-plugin-AnsiEsc'
+" Plug 'powerman/vim-plugin-AnsiEsc'
 
 " Phoenix
 Plug 'c-brenn/phoenix.vim'
@@ -223,15 +223,15 @@ let g:test#ruby#cucumber#executable = 'spinach'
 ""call neomake#configure#automake('w')
 
 
-" Asynchronous file linter
-Plug 'w0rp/ale'
-" wait a bit before checking syntax in a file, if typing
-let g:ale_lint_delay = 100
-let g:ale_fixers = {'javascript': ['eslint']}
-let g:ale_linters = {'javascript': ['standard']}
-let g:ale_fix_on_save = 1
-" Enable completion where available.
-let g:ale_completion_enabled = 1
+" " Asynchronous file linter
+" Plug 'w0rp/ale'
+" " wait a bit before checking syntax in a file, if typing
+" let g:ale_lint_delay = 100
+" let g:ale_fixers = {'javascript': ['eslint']}
+" let g:ale_linters = {'javascript': ['standard']}
+" let g:ale_fix_on_save = 1
+" " Enable completion where available.
+" let g:ale_completion_enabled = 1
 
 ""autocmd bufwritepost *.js silent !standard --fix %
 ""set autoread
@@ -395,9 +395,9 @@ Plug 'dietsche/vim-lastplace'
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 
-let g:ale_fixers = {'javascript': ['prettier-standard']}
-let g:ale_linters = {'javascript': ['standard']}
-let g:ale_fix_on_save = 1
+" let g:ale_fixers = {'javascript': ['prettier-standard']}
+" let g:ale_linters = {'javascript': ['standard']}
+" let g:ale_fix_on_save = 1
 
 " Easily manage tags files
 " Plug 'ludovicchabant/vim-gutentags'
