@@ -1,5 +1,4 @@
 scriptencoding utf-8
-" Josh's vim configuration (http://github.com/knewter/dotfiles)
 
 " Table of Contents
 " 1) Basics #basics
@@ -322,87 +321,6 @@ augroup localfzf
         \                 <bang>0)
 augroup END
 
-
-" let g:neoformat_javascript_standard = {
-"           \ 'exe': '/usr/local/bin/standard',
-"           \ 'args': ['--fix'],
-"           \ 'stdin': 1,
-"           \ }
-
-
-"" ONLY PRETTIER
-"" autoformato JS files with Prettier
-""autocmd BufWritePre *.js Neoformat standard
-""autocmd BufWritePre *.js Tradeship
-
-
-
-" Open files where you last left them
-Plug 'dietsche/vim-lastplace'
-
-" Execute code checks, find mistakes, in the background
-"Plug 'neomake/neomake'
-"   " Run Neomake when I save any buffer
-"  autocmd BufWritePre *.js Neomake
-"   augroup localneomake
-"    autocmd! BufWritePost * Neomake
-"   augroup END
-"   " Don't tell me to use smartquotes in markdown ok?
-"   let g:neomake_markdown_enabled_makers = []
-"
-"   " Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
-"   let g:neomake_elixir_enabled_makers = ['mix', 'mycredo']
-"   function! NeomakeCredoErrorType(entry)
-"     if a:entry.type ==# 'F'      " Refactoring opportunities
-"       let l:type = 'W'
-"     elseif a:entry.type ==# 'D'  " Software design suggestions
-"       let l:type = 'I'
-"     elseif a:entry.type ==# 'W'  " Warnings
-"       let l:type = 'W'
-"     elseif a:entry.type ==# 'R'  " Readability suggestions
-"       let l:type = 'I'
-"     elseif a:entry.type ==# 'C'  " Convention violation
-"       let l:type = 'W'
-"     else
-"       let l:type = 'M'           " Everything else is a message
-"     endif
-"     let a:entry.type = l:type
-"   endfunction
-"
-"   let g:neomake_elixir_mycredo_maker = {
-"         \ 'exe': 'mix',
-"         \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
-"         \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
-"         \ 'postprocess': function('NeomakeCredoErrorType')
-"         \ }
-
-" autocmd bufwritepost *.js silent !prettier-standard % set autoread
-" autocmd FileType javascript set formatprg=prettier-standard
-""autocmd BufWritePre *.js silent :normal gggqG\<C-o>\<C-o>"
-""autocmd BufWritePre *.js :normal gggqG
-""autocmd bufwritepost *.js silent !standard --fix % set autoread
-
-""let g:neomake_javascript_enabled_makers = ['standard']
-""let g:neomake_javascript_jsx_enabled_makers = ['standard']
-
-
-" Plug 'prettier/vim-prettier', {
-"   \ 'do': 'yarn install',
-"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-"
-
-" let g:prettier#autoformat = 0
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-
-
-" let g:ale_fixers = {'javascript': ['prettier-standard']}
-" let g:ale_linters = {'javascript': ['standard']}
-" let g:ale_fix_on_save = 1
-
-" Easily manage tags files
-" Plug 'ludovicchabant/vim-gutentags'
-" let g:gutentags_cache_dir = '~/.tags_cache'
-
 " Remove unused imports
 Plug 'karthikv/tradeship-vim'
 " navigate up a directory with '-' in netrw, among other things
@@ -417,11 +335,6 @@ Plug 'trevordmiller/nova-vim'
 Plug 'junegunn/goyo.vim'
 
 let g:mix_format_on_save = 1
-
-" vifm file manager as the default vim file management tool
-" Plug 'vifm/neovim-vifm'
-" NOTE: I don't get highlighting with this and it's hard to see where the
-" selection is
 
 call plug#end()
 
@@ -530,17 +443,6 @@ augroup erlang
   autocmd BufNewFile,BufRead relx.config setlocal filetype=erlang
 augroup END
 
-" augroup elixir
-"   autocmd!
-"   " autocmd BufWritePre *.ex call Indent()
-"   " autocmd BufWritePre *.exs call Indent()
-"   "
-"   " Sadly, I can't enable auto-indent for elixir because it messes up my heredoc
-"   " indentation for code sections and it has a couple of other issues :(
-"   autocmd BufNewFile,BufRead *.ex setlocal formatoptions=tcrq
-"   autocmd BufNewFile,BufRead *.exs setlocal formatoptions=tcrq
-" augroup END
-
 augroup elm
   autocmd!
   autocmd BufNewFile,BufRead *.elm setlocal tabstop=4
@@ -608,12 +510,4 @@ nnoremap <silent> <BS> <C-w>h
 nnoremap <tab> :tabprev<cr>
 "" nnoremap <tab> :tabnext<cr>
 """ End Navigation ==================
-
-
-" Load additional HTML syntax files
-runtime! syntax/html/*.vim
-
-" Add `local-class` to work with `ember-css-modules`
-syn match htmlArg contained "\<local-class\>"
-
 
