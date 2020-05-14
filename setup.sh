@@ -1,20 +1,44 @@
 #!/bin/bash
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# ack
-ln -sf `pwd`/ack/ackrc ~/.ackrc
-# Plug (to be used with nvim)
-# https://github.com/junegunn/vim-plug
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# Setup git
+ln -s ${BASEDIR}/git/gitconfig ~/.gitconfig
+ln -s ${BASEDIR}/git/gitignore ~/.gitignore
+ln -s ${BASEDIR}/git/gitmessage ~/.gitmessage
 
-# nvim
-mkdir -p ~/.config/nvim
-ln -sf `pwd`/nvim/init.vim ~/.config/nvim/
+# Install homebrew dependencies
+bash ${BASEDIR}/homebrew/install.sh
 
-echo "# Now for some manual stuff, sorry!"
-echo "## nvim"
-echo "To install the nvim plugins, open up vim and type ':PlugInstall'\n"
-echo "## git"
-echo "Setup your git config like so:\ngit config --global user.email
-"franzejr@gmail.com"\ngit config --global user.name "Franze Jr""
+# Configure Alacritty
+mkdir ~/.config/alacritty
+ln -s ${BASEDIR}/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 
+# Set osx defaults
+bash ${BASEDIR}/osx-defaults/set-defaults.sh
+
+# Setup tmux
+git clone --branch v3.0.0 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+ln -s ${BASEDIR}/tmux/tmux.conf ~/.tmux.conf
+bash '~/.tmux/plugins/tpm/bin/install_plugins'
+
+# Setup bash_profile
+rm ~/.profile
+rm ~/.zshrc
+ln -s ${BASEDIR}/zsh/zshrc~/.zshrc
+/usr/local/opt/fzf/instal
+
+# vimfiles
+mkdir -p ~/.config
+ln -s ${BASEDIR}/vim/ ~/config/nvim
+ln -s ${BASEDIR}/vim/vimrc ~/.vimrc
+ln -s ${BASEDIR}/vim/ ~/.vim
+ln -s ${BASEDIR}/scripts/gpush/ /usr/local/bin
+nvim +PlugInstall +qall
+
+# Install JetBrainsMono Nerd Font Regular
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip -O /tmp/JetBrainsMono.zip
+unzip /tmp/JetBrainsMono.zip
+mv JetBrains\ Mono\ Regular\ Nerd\ Font\ Complete.ttf ~/Library/Fonts
+
+
+echo "DONE!"

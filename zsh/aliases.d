@@ -1,0 +1,10 @@
+#!/bin/zsh
+alias vim="nvim"
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias ls="ls -GwF"
+alias be="bundle exec"
+alias programming="cd ~/programming"
+alias gst="git status"
+alias k="kubectl"
+alias code="code-insiders"
+alias gpom="git push origin master"
