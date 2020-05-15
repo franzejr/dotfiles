@@ -32,7 +32,7 @@ mkdir -p ~/.config
 ln -s ${BASEDIR}/vim/ ~/config/nvim
 ln -s ${BASEDIR}/vim/vimrc ~/.vimrc
 ln -s ${BASEDIR}/vim/ ~/.vim
-ln -s ${BASEDIR}/scripts/gpush/ /usr/local/bin
+ln -s ${BASEDIR}/scripts/gpush /usr/local/bin
 nvim +PlugInstall +qall
 
 # Install JetBrainsMono Nerd Font Regular
