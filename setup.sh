@@ -29,7 +29,7 @@ ln -s ${BASEDIR}/zsh/zshrc ~/.zshrc
 
 # vimfiles
 mkdir -p ~/.config
-ln -s ${BASEDIR}/vim/ ~/config/nvim
+ln -s ${BASEDIR}/vim/ ~/.config/nvim
 ln -s ${BASEDIR}/vim/vimrc ~/.vimrc
 ln -s ${BASEDIR}/vim/ ~/.vim
 ln -s ${BASEDIR}/scripts/gpush /usr/local/bin
