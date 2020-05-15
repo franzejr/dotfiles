@@ -59,5 +59,6 @@
 [diff "sopsdiffer"]
   textconv = sops -d
 [user]
-  name = Franze Jr.
+	name = Franze Jr.
   useConfigOnly = true
+	email = franzejr@gmail.com

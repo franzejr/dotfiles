@@ -126,3 +126,4 @@ key_bindings:
   - {key: Down, mods: Alt, chars: "\x1b[1;3B"}
   - {key: Down, chars: "\x1b[B", mode: ~AppCursor}
   - {key: Down, chars: "\x1bOB", mode: AppCursor}
+  - {key: N, mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"]}}

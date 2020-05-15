@@ -24,7 +24,7 @@ bash '~/.tmux/plugins/tpm/bin/install_plugins'
 # Setup bash_profile
 rm ~/.profile
 rm ~/.zshrc
-ln -s ${BASEDIR}/zsh/zshrc~/.zshrc
+ln -s ${BASEDIR}/zsh/zshrc ~/.zshrc
 /usr/local/opt/fzf/instal
 
 # vimfiles
