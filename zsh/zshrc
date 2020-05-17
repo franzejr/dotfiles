@@ -13,3 +13,5 @@ if [ "$TMUX" = "" ]; then
 fi
 
 [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
