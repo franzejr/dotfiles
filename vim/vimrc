@@ -95,13 +95,6 @@ set scrolloff=27
 set sidescrolloff=27
 set sidescroll=1
 
-" ======== NERDTree
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-let NERDTreeIgnore = ['\.pyc$']
-let NERDTreeShowHidden = 1
-let NERDTreeMapOpenVSplit='v'
-
 " ======== Splitting
 map <C-N> :vsp<CR><C-P>
 map <C-C> :q<CR>
@@ -137,13 +130,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_detect_modified=1
-
-" ======== ViM Terraform
-let g:terraform_align=1
-let g:terraform_fold_sections=0
-let g:terraform_remap_spacebar=1
-let g:terraform_commentstring='#%s'
-let g:terraform_fmt_on_save=1
 
 " ======== Aleconfig
 let g:ale_completion_enabled = 1

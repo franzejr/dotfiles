@@ -25,12 +25,6 @@ Bundle "gmarik/vundle"
 Bundle "bling/vim-airline"
 
 " =============================================
-" Project
-" =============================================
-Bundle "jistr/vim-nerdtree-tabs.git"
-Bundle "scrooloose/nerdtree.git"
-
-" =============================================
 " Vim Improvements
 " =============================================
 Bundle "vim-scripts/bufkill.vim"

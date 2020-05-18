@@ -26,9 +26,6 @@ noremap <S-tab> :bp<CR>
 nmap <leader>d :BD<CR>
 nmap <leader>D :bufdo bd<CR>
 
-" NERDtree
-nmap <silent> <leader>m :NERDTreeToggle<cr>%
-
 " ==============================
 " Window/Tab/Split Manipulation
 " ==============================
@@ -89,7 +86,6 @@ if has("user_commands")
     command! -bang Qa qa<bang>
 endif
 
-vmap <C-c> "+yi
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
