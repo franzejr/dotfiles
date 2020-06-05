@@ -35,7 +35,6 @@ brew "kubectx"
 brew "memcached"
 brew "mp4v2"
 brew "neovim"
-brew "nginx", restart_service: true
 brew "nmap"
 brew "node"
 brew "passenger"
