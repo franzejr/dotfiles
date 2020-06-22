@@ -14,6 +14,7 @@
   l = log --oneline --graph --decorate
   s = status -b
   log = log --oneline --decorate --all --graph
+  commitsAtDate = "!f() { git log --pretty='format:%C(yellow)%h %G? %ad%Cred%d %Creset%s%C(cyan) [%cn]' --decorate --after=\"$1 0:00\" --before=\"$1 23:59\" --author \"`git config user.name`\"; }; f"
 [push]
   default = simple
 [color]
