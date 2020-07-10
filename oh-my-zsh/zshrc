@@ -1,44 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
-# export ZSH_CUSTOM="$HOME/.dotfiles/oh-my-zsh/zsh_custom"
-
-
-# Aliases
-
-alias vim="nvim"
-alias preview="fzf --preview 'bat --color \"always\" {}'"
-alias ls="ls -GwF"
-alias be="bundle exec"
-alias programming="cd ~/programming"
-alias gst="git status"
-alias k="kubectl"
-alias code="code-insiders"
-alias gpom="git push origin master"
-alias gl="git log"
-alias glo="git log --pretty=oneline"
-alias glu="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
-alias glg="git log --decorate --graph --abbrev-commit --date=relative"
-alias mft="mix format 'apps/*/{lib,config,test}/**/*.{ex,exs}'"
-
-
-# exports
-
-export PATH="$PATH:/usr/local/bin/"
-export PATH="$PATH:/usr/local/sbin"
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:$HOME/dotfiles/bin"
-export PATH="$HOME/Library/Android/sdk/platform-tools/:$PATH"
-export PATH=/Users/franzejr/flutter/bin:$PATH
-export PATH="$HOME/Library/Android/sdk/platform-tools/:$PATH"
-export PATH="$PATH:$N_PREFIX/bin"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export AUTO_MOUNT_HOME=false
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_INSECURE_REDIRECT=1
-export LC_ALL=en_US.UTF-8
-export HOST=$(hostname)
-export EDITOR="nvim"
-export N_PREFIX="$HOME/n"
+export ZSH_CUSTOM="$HOME/dotfiles/oh-my-zsh/zsh_custom"
 
 plugins=(
   gitfast
@@ -51,6 +12,8 @@ plugins=(
   asdf
   rbenv
   autojump
+  aliases
+  exports
 )
 ZSH_THEME="sorin"
 HYPHEN_INSENSITIVE="true"
