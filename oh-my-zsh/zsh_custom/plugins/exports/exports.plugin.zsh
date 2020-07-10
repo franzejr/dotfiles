@@ -1,4 +1,3 @@
-export GOPATH="/Users/Lucas/Projects/Golang"
 export PATH="$PATH:/usr/local/bin/"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="/usr/local/opt/curl/bin:$PATH"

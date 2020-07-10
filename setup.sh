@@ -27,6 +27,10 @@ rm ~/.zshrc
 ln -s ${BASEDIR}/zsh/zshrc ~/.zshrc
 /usr/local/opt/fzf/instal
 
+git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
+rm ~/.zshrc
+ln -s ${BASEDIR}/oh-my-zsh/zshrc ~/.zshrc
+
 # vimfiles
 mkdir -p ~/.config
 ln -s ${BASEDIR}/vim/ ~/.config/nvim
