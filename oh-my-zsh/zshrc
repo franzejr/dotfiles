@@ -10,18 +10,18 @@ plugins=(
   tmux
   fzf
   asdf
-  rbenv
   autojump
   aliases
   exports
+  rbenv
 )
 ZSH_THEME="sorin"
 HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-ZSH_TMUX_AUTOSTART="true"
-ZSH_TMUX_AUTOSTART_ONCE= "true"
+ZSH_TMUX_AUTOSTART="false"
+ZSH_TMUX_AUTOSTART_ONCE= "false"
 ZSH_TMUX_AUTOQUIT="true"
 ZSH_TMUX_AUTOCONNECT="true"
 

@@ -32,12 +32,9 @@ rm ~/.zshrc
 ln -s ${BASEDIR}/oh-my-zsh/zshrc ~/.zshrc
 
 # vimfiles
-mkdir -p ~/.config
-ln -s ${BASEDIR}/vim/ ~/.config/nvim
-ln -s ${BASEDIR}/vim/vimrc ~/.vimrc
-ln -s ${BASEDIR}/vim/ ~/.vim
-ln -s ${BASEDIR}/scripts/gpush /usr/local/bin
-nvim +PlugInstall +qall
+# nvim
+mkdir -p ~/.config/nvim
+ln -sf `pwd`/nvim/init.vim ~/.config/nvim/
 
 # Install JetBrainsMono Nerd Font Regular
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip -O /tmp/JetBrainsMono.zip
