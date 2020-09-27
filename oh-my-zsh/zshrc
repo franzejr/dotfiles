@@ -27,3 +27,5 @@ ZSH_TMUX_AUTOCONNECT="true"
 
 source $ZSH/oh-my-zsh.sh
 export MANPATH="/usr/local/man:$MANPATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

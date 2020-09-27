@@ -76,9 +76,6 @@ set number
 if isdirectory($HOME . '/.config/nvim/undo') == 0
   :silent !mkdir -p ~/.config/nvim/undo > /dev/null 2>&1
 endif
-set undodir=./.vim-undo//
-set undodir+=~/.vim/undo//
-set undofile
 
 """""""""""""" End Basics
 
@@ -127,11 +124,26 @@ let g:elm_browser_command = 'open'
 let g:elm_make_show_warnings = 1
 let g:elm_setup_keybindings = 1
 
+
+   " assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+    Plug 'ncm2/ncm2'
+    Plug 'roxma/nvim-yarp'
+
+    " enable ncm2 for all buffers
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+
+    " IMPORTANT: :help Ncm2PopupOpen for more information
+    set completeopt=noinsert,menuone,noselect
+
+    " NOTE: you need to install completion sources to get completions. Check
+    " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+    Plug 'ncm2/ncm2-bufword'
+    Plug 'ncm2/ncm2-path'
+
+
 " Dart
 Plug 'dart-lang/dart-vim-plugin'
 let dart_format_on_save = 1
-
-Plug 'roxma/nvim-completion-manager'
 Plug 'dart-lang/dart-vim-plugin', { 'for': [ 'dart' ] }
 
 let g:LanguageClient_serverCommands = {
@@ -165,12 +177,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
-
 " TypeScript {{{4
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript',       { 'do': ':UpdateRemotePlugins' }
-
-
 
 Plug 'ervandew/supertab'
 
@@ -200,16 +209,20 @@ let g:test#strategy = 'neoterm'
 " I use spinach, not cucumber!
 let g:test#ruby#cucumber#executable = 'spinach'
 
+"" Elixir LS
+
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
 ""Plug 'neomake/neomake'
 " When writing a buffer (no delay).
 ""call neomake#configure#automake('w')
 
-
 " Asynchronous file linter
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " wait a bit before checking syntax in a file, if typing
 let g:ale_lint_delay = 100
-let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['eslint'], 'elixir': ['mix_format'] }
 let g:ale_linters = {'javascript': ['standard']}
 let g:ale_fix_on_save = 1
 " Enable completion where available.
@@ -263,7 +276,6 @@ let g:calendar_google_task = 1
 " nicer api for neovim terminal
 Plug 'kassio/neoterm'
 
-
 """ UI Plugins #ui-plugins
 " Molokai theme makes me cozy
 Plug 'tomasr/molokai'
@@ -293,6 +305,7 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'window': 'enew' }
 nnoremap <silent> <C-P> :FZF<cr>
 nnoremap <silent> <leader>a :Ag<cr>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 augroup localfzf
   autocmd!
   autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
@@ -318,64 +331,8 @@ augroup END
 ""autocmd BufWritePre *.js Tradeship
 
 
-
 " Open files where you last left them
 Plug 'dietsche/vim-lastplace'
-
-" Execute code checks, find mistakes, in the background
-"Plug 'neomake/neomake'
-"   " Run Neomake when I save any buffer
-"  autocmd BufWritePre *.js Neomake
-"   augroup localneomake
-"    autocmd! BufWritePost * Neomake
-"   augroup END
-"   " Don't tell me to use smartquotes in markdown ok?
-"   let g:neomake_markdown_enabled_makers = []
-"
-"   " Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
-"   let g:neomake_elixir_enabled_makers = ['mix', 'mycredo']
-"   function! NeomakeCredoErrorType(entry)
-"     if a:entry.type ==# 'F'      " Refactoring opportunities
-"       let l:type = 'W'
-"     elseif a:entry.type ==# 'D'  " Software design suggestions
-"       let l:type = 'I'
-"     elseif a:entry.type ==# 'W'  " Warnings
-"       let l:type = 'W'
-"     elseif a:entry.type ==# 'R'  " Readability suggestions
-"       let l:type = 'I'
-"     elseif a:entry.type ==# 'C'  " Convention violation
-"       let l:type = 'W'
-"     else
-"       let l:type = 'M'           " Everything else is a message
-"     endif
-"     let a:entry.type = l:type
-"   endfunction
-"
-"   let g:neomake_elixir_mycredo_maker = {
-"         \ 'exe': 'mix',
-"         \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
-"         \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
-"         \ 'postprocess': function('NeomakeCredoErrorType')
-"         \ }
-
-" autocmd bufwritepost *.js silent !prettier-standard % set autoread
-" autocmd FileType javascript set formatprg=prettier-standard
-""autocmd BufWritePre *.js silent :normal gggqG\<C-o>\<C-o>"
-""autocmd BufWritePre *.js :normal gggqG
-""autocmd bufwritepost *.js silent !standard --fix % set autoread
-
-""let g:neomake_javascript_enabled_makers = ['standard']
-""let g:neomake_javascript_jsx_enabled_makers = ['standard']
-
-
-" Plug 'prettier/vim-prettier', {
-"   \ 'do': 'yarn install',
-"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-"
-
-" let g:prettier#autoformat = 0
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-
 
 let g:ale_fixers = {'javascript': ['prettier-standard']}
 let g:ale_linters = {'javascript': ['standard']}
@@ -432,7 +389,6 @@ syntax enable
 " colorscheme solarized8_light_flat
 " colorscheme solarized8_dark_flat
 set background=dark
-colorscheme nova-with-italics
 
 """ Keyboard
 " Remove highlights
@@ -511,17 +467,6 @@ augroup erlang
   autocmd BufNewFile,BufRead *.erl setlocal softtabstop=4
   autocmd BufNewFile,BufRead relx.config setlocal filetype=erlang
 augroup END
-
-" augroup elixir
-"   autocmd!
-"   " autocmd BufWritePre *.ex call Indent()
-"   " autocmd BufWritePre *.exs call Indent()
-"   "
-"   " Sadly, I can't enable auto-indent for elixir because it messes up my heredoc
-"   " indentation for code sections and it has a couple of other issues :(
-"   autocmd BufNewFile,BufRead *.ex setlocal formatoptions=tcrq
-"   autocmd BufNewFile,BufRead *.exs setlocal formatoptions=tcrq
-" augroup END
 
 augroup elm
   autocmd!
