@@ -48,7 +48,7 @@ colors:
     cyan: '0x9aedfe'
     white: '0xe6e6e6'
   indexed_colors: []
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 2
   color: '0x000000'
