@@ -80,7 +80,7 @@ endif
 """""""""""""" End Basics
 
 """""""""""""" Plugins #plugins
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
 "" Dash
 Plug 'rizzatti/dash.vim'
 ""Vim Wiki
