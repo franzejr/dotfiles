@@ -171,7 +171,6 @@ Plug 'milkypostman/vim-togglelist'
 
 
 " Autocomplete {{{3
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -179,7 +178,20 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 " TypeScript {{{4
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript',       { 'do': ':UpdateRemotePlugins' }
+" For async completion
+Plug 'Shougo/deoplete.nvim'
+" For Denite features
+Plug 'Shougo/denite.nvim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+let g:prettier#autoformat = 1
+let g:prettier#exec_cmd_async = 1
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+" Enable deoplete at startup
+
+let g:deoplete#enable_at_startup = 1
 
 Plug 'ervandew/supertab'
 
@@ -214,10 +226,6 @@ let g:test#ruby#cucumber#executable = 'spinach'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
-""Plug 'neomake/neomake'
-" When writing a buffer (no delay).
-""call neomake#configure#automake('w')
-
 " Asynchronous file linter
 Plug 'dense-analysis/ale'
 " wait a bit before checking syntax in a file, if typing
@@ -227,9 +235,6 @@ let g:ale_linters = {'javascript': ['standard']}
 let g:ale_fix_on_save = 1
 " Enable completion where available.
 let g:ale_completion_enabled = 1
-
-""autocmd bufwritepost *.js silent !standard --fix %
-""set autoread
 
 " git support from dat tpope
 Plug 'tpope/vim-fugitive'
@@ -318,11 +323,6 @@ augroup localfzf
 augroup END
 
 
-" let g:neoformat_javascript_standard = {
-"           \ 'exe': '/usr/local/bin/standard',
-"           \ 'args': ['--fix'],
-"           \ 'stdin': 1,
-"           \ }
 
 
 "" ONLY PRETTIER
@@ -338,9 +338,6 @@ let g:ale_fixers = {'javascript': ['prettier-standard']}
 let g:ale_linters = {'javascript': ['standard']}
 let g:ale_fix_on_save = 1
 
-" Easily manage tags files
-" Plug 'ludovicchabant/vim-gutentags'
-" let g:gutentags_cache_dir = '~/.tags_cache'
 
 " Remove unused imports
 Plug 'karthikv/tradeship-vim'
