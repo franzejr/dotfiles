@@ -146,11 +146,6 @@ Plug 'dart-lang/dart-vim-plugin'
 let dart_format_on_save = 1
 Plug 'dart-lang/dart-vim-plugin', { 'for': [ 'dart' ] }
 
-let g:LanguageClient_serverCommands = {
-    \ 'dart'           : ['dart_language_server'],
-    \ }
-
-let g:LanguageClient_loggingLevel = 'DEBUG'
 
 " Fuse
 Plug 'BeeWarloc/vim-fuse'
@@ -169,17 +164,8 @@ Plug 'bogado/file-line'
 " Easily toggle quickfix and locations lists with <leader>l and <leader>q
 Plug 'milkypostman/vim-togglelist'
 
-
-" Autocomplete {{{3
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
 " TypeScript {{{4
 Plug 'HerringtonDarkholme/yats.vim'
-" For async completion
-Plug 'Shougo/deoplete.nvim'
 " For Denite features
 Plug 'Shougo/denite.nvim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -189,9 +175,6 @@ let g:prettier#exec_cmd_async = 1
 let g:prettier#quickfix_enabled = 0
 autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" Enable deoplete at startup
-
-let g:deoplete#enable_at_startup = 1
 
 Plug 'ervandew/supertab'
 
@@ -376,7 +359,8 @@ endif
 set background=dark
 "set background=light
 syntax enable
-"colorscheme molokai
+colorscheme molokai
+"colorscheme ayu
 
 " Ayu theme config
 "let ayucolor="light"  " for light version of theme
