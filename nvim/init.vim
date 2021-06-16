@@ -94,6 +94,8 @@ let g:vimwiki_list=[wiki]
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['elm']
 
+Plug 'ryanoasis/vim-devicons'
+
 " HTML / JS / CSS
 Plug 'sbdchd/neoformat'
 Plug 'othree/html5.vim'
@@ -193,6 +195,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tomtom/tcomment_vim'
 " By default, `gc` will toggle comments
 
+
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'janko-m/vim-test'                " Run tests with varying granularity
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
@@ -203,11 +208,61 @@ nmap <silent> <leader>g :TestVisit<CR>
 let g:test#strategy = 'neoterm'
 " I use spinach, not cucumber!
 let g:test#ruby#cucumber#executable = 'spinach'
-
 "" Elixir LS
+Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
+"" TypeScript LS
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ ]
+" from readme
+" if hidden is not set, TextEdit might fail.
+set hidden " Some servers have issues with backup files, see #649 set nobackup set nowritebackup
+" Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Asynchronous file linter
 Plug 'dense-analysis/ale'
