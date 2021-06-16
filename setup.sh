@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Make sure you have set up the HOSTNAME on osx-defaults/set-defaults.sh"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Setup git
