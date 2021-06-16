@@ -323,6 +323,7 @@ Plug 'kassio/neoterm'
 " Molokai theme makes me cozy
 Plug 'tomasr/molokai'
 Plug 'fmoralesc/molokayo'
+Plug 'tomasiser/vim-code-dark'
 " Try out the ayu theme - https://github.com/ayu-theme/ayu-vim
 Plug 'ayu-theme/ayu-vim'
 " Solarized - variant with specific terminal support
@@ -414,8 +415,9 @@ endif
 set background=dark
 "set background=light
 syntax enable
-colorscheme molokai
+"colorscheme molokai
 "colorscheme ayu
+colorscheme codedark
 
 " Ayu theme config
 "let ayucolor="light"  " for light version of theme
@@ -424,7 +426,7 @@ colorscheme molokai
 " colorscheme ayu
 " colorscheme solarized8_light_flat
 " colorscheme solarized8_dark_flat
-set background=dark
+"set background=dark
 
 """ Keyboard
 " Remove highlights
