@@ -34,8 +34,9 @@ ln -s ${BASEDIR}/oh-my-zsh/zshrc ~/.zshrc
 
 # vimfiles
 # nvim
-mkdir -p ~/.config
+mkdir -p ~/.config/nvim
 ln -sf `pwd`/nvim/init.vim ~/.config/nvim/
+cp -R ./nvim/autoload ~/.config/nvim
 curl -fLo ${BASEDIR}/nvim/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qall
