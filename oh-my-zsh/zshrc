@@ -11,6 +11,7 @@ plugins=(
   aliases
   exports
   rbenv
+  nvm
 )
 ZSH_THEME="sorin"
 HYPHEN_INSENSITIVE="true"
@@ -31,5 +32,8 @@ export PATH="$PATH:`pwd`/flutter/bin"
 
 source $ZSH/oh-my-zsh.sh
 export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
