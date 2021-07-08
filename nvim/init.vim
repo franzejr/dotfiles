@@ -349,8 +349,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_preview_window = ['down:40%', 'ctrl-/']
-nnoremap <silent> <C-P> :FZF<cr>
-nnoremap <silent> <leader>a :Ag<cr>
+nnoremap <silent> <C-F> :FZF<cr>
+nnoremap <silent> <C-P> :Files<cr>
+nnoremap <silent> <Leader>a :Ag<cr>
 nnoremap <silent> <Leader>c :Commits<CR>
 
 
