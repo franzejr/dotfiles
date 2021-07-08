@@ -348,6 +348,7 @@ let g:airline#extensions#tabline#enabled = 0
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_preview_window = ['down:40%', 'ctrl-/']
 nnoremap <silent> <C-P> :FZF<cr>
 nnoremap <silent> <leader>a :Ag<cr>
 nnoremap <silent> <Leader>c :Commits<CR>
