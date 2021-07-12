@@ -270,7 +270,6 @@ etc/emacs.tmpdesktop
 
 # Microsoft-related builds and installations.
 *.in-h
-_*
 !lib/_Noreturn.h
 !m4/_*.m4
 /bin/

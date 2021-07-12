@@ -158,7 +158,6 @@ function! NpmInstallAndUpdateRemotePlugins(info)
   UpdateRemotePlugins
 endfunction
 Plug 'neovim/node-host', { 'do': function('NpmInstallAndUpdateRemotePlugins') }
-""Plug 'vimlab/mdown.vim', { 'do': function('NpmInstallAndUpdateRemotePlugins') }
 
 """ Utilities #utilities
 Plug 'bogado/file-line'
@@ -171,7 +170,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 " For Denite features
 Plug 'Shougo/denite.nvim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-let g:prettier#autoformat = 1
+let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_async = 1
 " when running at every change you may want to disable quickfix
 let g:prettier#quickfix_enabled = 0
@@ -265,20 +264,16 @@ function! s:show_documentation()
 endfunction
 
 " Asynchronous file linter
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 " wait a bit before checking syntax in a file, if typing
-let g:ale_lint_delay = 100
-let g:ale_fixers = {'javascript': ['eslint'], 'elixir': ['mix_format'] }
-let g:ale_linters = {'javascript': ['standard']}
-let g:ale_fix_on_save = 1
+"let g:ale_lint_delay = 100
+"let g:ale_fixers = {'javascript': ['eslint'], 'elixir': ['mix_format'], 'ruby': []}
+"let g:ale_fix_on_save = 0
 " Enable completion where available.
-let g:ale_completion_enabled = 1
+"let g:ale_completion_enabled = 0
 
 " git support from dat tpope
 Plug 'tpope/vim-fugitive'
-
-" github support from dat tpope
-Plug 'tpope/vim-rhubarb'
 
 " vim interface to web apis.  Required for gist-vim
 Plug 'mattn/webapi-vim'
@@ -364,9 +359,9 @@ nnoremap <silent> <Leader>c :Commits<CR>
 " Open files where you last left them
 Plug 'dietsche/vim-lastplace'
 
-let g:ale_fixers = {'javascript': ['prettier-standard']}
-let g:ale_linters = {'javascript': ['standard']}
-let g:ale_fix_on_save = 1
+"let g:ale_fixers = {'javascript': ['prettier-standard']}
+"let g:ale_linters = {'javascript': ['standard']}
+"let g:ale_fix_on_save = 0
 
 
 " Remove unused imports
